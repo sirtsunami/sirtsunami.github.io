@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quadron Records</title>
+  <style>
+    @font-face {
+      font-family: 'CustomFont';
+      src: url('a.ttf') format('truetype');
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'CustomFont', sans-serif;
+      color: #f0f0f0;
+      overflow: hidden;
+    }
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .nav {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .nav a {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-size: 1.2em;
+      transition: border-bottom 0.3s;
+      border-bottom: 2px solid transparent;
+    }
+    .nav a:hover {
+      border-bottom: 2px solid #f0f0f0;
+    }
+    .contact-page {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      background: url('a.png') center center / cover no-repeat;
+    }
+    .contact-page.visible {
+      display: flex;
+    }
+    .email {
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+    .back-link {
+      margin-top: 30px;
+      color: #f0f0f0;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay loop muted playsinline class="bg-video" id="bgVideo">
+    <source src="a.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="nav" id="mainNav">
+    <a href="#" onclick="showContactPage()">CONTACT</a>
+  </div>
+
+  <div class="contact-page" id="contactPage">
+    <div class="email">info@quadronrecords.com</div>
+    <div class="email">demo@quadronrecords.com</div>
+    <div class="email">release@quadronrecords.com</div>
+    <div class="back-link" onclick="goBack()">Return</div>
+  </div>
+
+  <script>
+    function showContactPage() {
+      document.getElementById('bgVideo').pause();
+      document.getElementById('bgVideo').style.display = 'none';
+      document.getElementById('mainNav').style.display = 'none';
+      document.getElementById('contactPage').classList.add('visible');
+    }
+
+    function goBack() {
+      const video = document.getElementById('bgVideo');
+      video.style.display = 'block';
+      video.play();
+      document.getElementById('mainNav').style.display = 'flex';
+      document.getElementById('contactPage').classList.remove('visible');
+    }
+  </script>
+</body>
+</html>
