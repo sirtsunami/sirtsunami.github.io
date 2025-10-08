@@ -19,16 +19,7 @@
       height: 100%;
       font-family: 'CustomFont', sans-serif;
       color: #f0f0f0;
-      overflow: hidden;
-    }
-    .bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -1;
+      background: url('a.png') center center / cover no-repeat;
     }
     .nav {
       position: absolute;
@@ -54,7 +45,8 @@
       justify-content: center;
       height: 100vh;
       text-align: center;
-      background: url('a.png') center center / cover no-repeat;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
     }
     .contact-page.visible {
       display: flex;
@@ -72,10 +64,6 @@
   </style>
 </head>
 <body>
-  <video autoplay loop muted playsinline class="bg-video" id="bgVideo">
-    <source src="a.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
 
   <div class="nav" id="mainNav">
     <a href="#" onclick="showContactPage()">CONTACT</a>
@@ -89,19 +77,16 @@
 
   <script>
     function showContactPage() {
-      document.getElementById('bgVideo').pause();
-      document.getElementById('bgVideo').style.display = 'none';
+      document.body.style.background = "url('a.png') center center / cover no-repeat";
       document.getElementById('mainNav').style.display = 'none';
       document.getElementById('contactPage').classList.add('visible');
     }
 
     function goBack() {
-      const video = document.getElementById('bgVideo');
-      video.style.display = 'block';
-      video.play();
       document.getElementById('mainNav').style.display = 'flex';
       document.getElementById('contactPage').classList.remove('visible');
     }
   </script>
+
 </body>
 </html>
